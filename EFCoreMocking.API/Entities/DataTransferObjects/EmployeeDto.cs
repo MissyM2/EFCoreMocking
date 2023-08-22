@@ -1,7 +1,7 @@
 ﻿using System;
-namespace EFCoreMocking.API.Models
+namespace EFCoreMocking.API.Entities.DataTransferObjects
 {
-    public class Employee
+	public class EmployeeDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -20,15 +20,30 @@
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
     <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.5" />
     <PackageReference Include="SQLitePCLRaw.provider.dynamic_cdecl" Version="2.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.10" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="5.3.3" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Data\" />
-    <None Remove="Models\" />
+    <None Remove="Repositories\" />
+    <None Remove="Extensions\" />
+    <None Remove="Contracts\" />
+    <None Remove="Services\" />
+    <None Remove="Entities\" />
+    <None Remove="Entities\Models\" />
+    <None Remove="Entities\DataTransferObjects\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Contracts\" />
+    <Folder Include="Services\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Entities\Models\" />
+    <Folder Include="Entities\DataTransferObjects\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Properties\serviceDependencies.json" />

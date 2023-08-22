@@ -1,18 +1,20 @@
 ﻿using EFCoreMocking.API.Data;
-using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
+using EFCoreMocking.API.Extensions;
+using Microsoft.AspNetCore.HttpOverrides;
+using NLog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connString = "Filename=:memory:";
-var conn = new SqliteConnection(connString);
-conn.Open();
-builder.Services.AddDbContext<EmployeeDBContext>(opt => opt.UseSqlite(conn));
-//builder.Services.AddDbContext<EmployeeDBContext>(options =>
-//    options.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnectionString") ?? throw new InvalidOperationException("Connection string 'EmployeeDBContext' not found.")));
+LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
 
 
 // Add services to the container.
+builder.Services.ConfigureCors();
+builder.Services.ConfigureLoggerService();
+builder.Services.ConfigureSqliteContext(builder.Configuration);
+builder.Services.ConfigureRepositoryWrapper();
+
+builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -32,11 +34,18 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
 
-    var context = services.GetRequiredService<EmployeeDBContext>();
+    var context = services.GetRequiredService<EmployeeDbContext>();
     context.Database.EnsureCreated();
 }
 
 app.UseHttpsRedirection();
+
+app.UseStaticFiles();
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.All
+});
+app.UseCors("CorsPolicy");
 
 app.UseAuthorization();
 
