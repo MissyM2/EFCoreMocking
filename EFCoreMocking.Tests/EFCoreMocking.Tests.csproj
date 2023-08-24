@@ -26,12 +26,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EFCoreMocking.API\EFCoreMocking.API.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <None Remove="Tests\" />
+    <None Remove="Mocks\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tests\" />
+    <Folder Include="Mocks\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EFCoreMocking.API\EFCoreMocking.API.csproj" />
   </ItemGroup>
 </Project>

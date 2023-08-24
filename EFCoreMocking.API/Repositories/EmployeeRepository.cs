@@ -15,7 +15,7 @@ namespace EFCoreMocking.API.Repositories
         public async Task<IEnumerable<Employee>> GetAllEmployeesAsync()
         {
             return await FindAll()
-               .OrderBy(ow => ow.Name)
+               .OrderBy(emp => emp.Name)
                .ToListAsync();
         }
 

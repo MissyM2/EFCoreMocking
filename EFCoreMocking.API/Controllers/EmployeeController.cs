@@ -9,7 +9,7 @@ namespace EFCoreMocking.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class EmployeesController : ControllerBase
+public class EmployeeController : ControllerBase
 {
     private ILoggerManager _logger;
     private IRepositoryWrapper _repository;
@@ -17,12 +17,12 @@ public class EmployeesController : ControllerBase
 
     //private readonly EmployeeDbContext _employeeDbContext;
 
-    //public EmployeesController(EmployeeDbContext employeeDbContext)
+    //public EmployeeController(EmployeeDbContext employeeDbContext)
     //{
     //    _employeeDbContext = employeeDbContext;
     //}
 
-    public EmployeesController(IRepositoryWrapper repository, IMapper mapper, ILoggerManager logger)
+    public EmployeeController(IRepositoryWrapper repository, IMapper mapper, ILoggerManager logger)
     {
         _repository = repository;
         _mapper = mapper;

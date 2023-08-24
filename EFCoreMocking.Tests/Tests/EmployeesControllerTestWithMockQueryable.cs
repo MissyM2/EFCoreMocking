@@ -16,8 +16,8 @@ namespace EFCoreMocking.Tests.Tests
         //    employeeContextMock.Setup(x => x.Employees).Returns(mock.Object);
 
         //    //Act
-        //    EmployeesController employeesController = new(employeeContextMock.Object);
-        //    var employees = (await employeesController.GetEmployees()).Value;
+        //    EmployeeController employeeController = new(employeeContextMock.Object);
+        //    var employees = (await employeeController.GetEmployees()).Value;
 
         //    //Assert
         //    Assert.NotNull(employees);
@@ -37,8 +37,8 @@ namespace EFCoreMocking.Tests.Tests
         //        .Returns(mock.Object);
 
         //    //Act
-        //    EmployeesController employeesController = new(employeeContextMock.Object);
-        //    var employee = (await employeesController.GetEmployeeById(1)).Value;
+        //    EmployeeController employeeController = new(employeeContextMock.Object);
+        //    var employee = (await employeeController.GetEmployeeById(1)).Value;
 
         //    //Assert
         //    Assert.NotNull(employee);
