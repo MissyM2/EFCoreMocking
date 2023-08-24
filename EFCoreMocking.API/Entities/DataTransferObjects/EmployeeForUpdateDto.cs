@@ -15,7 +15,7 @@ namespace EFCoreMocking.API.Entities.DataTransferObjects
 
         [Required(ErrorMessage = "Phone is required")]
         [Phone]
-        public string? Phone { get; set; }
+        public string Phone { get; set; }
     }
 }
 
