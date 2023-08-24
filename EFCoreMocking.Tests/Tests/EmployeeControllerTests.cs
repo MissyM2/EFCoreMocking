@@ -33,6 +33,23 @@ namespace EFCoreMocking.Tests.Tests
             Assert.IsAssignableFrom<IEnumerable<EmployeeDto>>(result.Value);
             Assert.NotEmpty(result.Value as IEnumerable<EmployeeDto>);
         }
+
+        [Fact]
+        public async Task GivenAnIdOfAnExistingOwner_WhenGettingOwnerById_ThenOwnerReturns()
+        {
+            var repositoryWrapperMock = MockIRepositoryWrapper.GetMock();
+            var mapper = GetMapper();
+            var logger = new LoggerManager();
+            var employeeController = new EmployeeController(repositoryWrapperMock.Object, mapper, logger);
+
+            var id = 79;
+            var result = await employeeController.GetEmployeeById(id) as ObjectResult;
+
+            Assert.NotNull(result);
+            Assert.Equal(StatusCodes.Status200OK, result.StatusCode);
+            Assert.IsAssignableFrom<EmployeeDto>(result.Value);
+            Assert.NotNull(result.Value as EmployeeDto);
+        }
     }
 }
 

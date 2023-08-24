@@ -44,8 +44,8 @@ namespace EFCoreMocking.Tests.Mocks
 
             mock.Setup(m => m.GetAllEmployeesAsync()).ReturnsAsync(() => FakeEmployeeDb.employees);
 
-            //mock.Setup(m => m.GetEmployeeByIdAsync(It.IsAny<int>()))
-            //    .Returns((int id) => employees.FirstOrDefault(o => o.Id == id));
+            mock.Setup(m => m.GetEmployeeByIdAsync(It.IsAny<int>()))
+                .ReturnsAsync((int id) => FakeEmployeeDb.employees.FirstOrDefault(o => o.Id == id));
 
             ////mock.Setup(m => m.GetEmployeeWithDetails(It.IsAny<Guid>()))
             ////    .Returns((Guid id) => FakeEmployeeDb.employees.FirstOrDefault(o => o.Id == id));

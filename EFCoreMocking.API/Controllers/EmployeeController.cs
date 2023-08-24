@@ -29,13 +29,6 @@ public class EmployeeController : ControllerBase
         _logger = logger;
     }
 
-    // GET: api/Employees
-    //[HttpGet]
-    //public async Task<ActionResult<IEnumerable<Employee>>> GetAllEmployees()
-    //{
-    //    return await _employeeDbContext.Employees.ToListAsync();
-    //}
-
     [HttpGet]
     public async Task<IActionResult> GetAllEmployees()
     {
@@ -52,49 +45,34 @@ public class EmployeeController : ControllerBase
         }
         catch (Exception ex)
         {
-           // _logger.LogError($"Something went wrong inside GetAllEmployees action: {ex.Message}");
+            _logger.LogError($"Something went wrong inside GetAllEmployees action: {ex.Message}");
             return StatusCode(500, "Internal server error");
         }
     }
 
-    //// GET: api/Employees/5
-    //[HttpGet("{id}")]
-    //public async Task<ActionResult<Employee>> GetEmployeeById(int id)
-    //{
-    //    var employee = await _employeeDbContext.Employees.FindAsync(id);
-
-    //    if (employee is null)
-    //    {
-    //        return NotFound();
-    //    }
-
-    //    return employee;
-    //}
-
     [HttpGet("{id}", Name = "EmployeeById")]
-    public IActionResult GetEmployeeById(int id)
+    public async Task<IActionResult> GetEmployeeById(int id)
     {
         try
         {
-            var employee = _repository.Employee.GetEmployeeByIdAsync(id);
+            var employee = await _repository.Employee.GetEmployeeByIdAsync(id);
 
             if (employee is null)
             {
-                //_logger.LogError($"Employee with id: {id}, hasn't been found in db.");
+                _logger.LogError($"Employee with id: {id}, hasn't been found in db.");
                 return NotFound();
             }
             else
             {
-                //_logger.LogInfo($"Returned employee with id: {id}");
+                _logger.LogInfo($"Returned employee with id: {id}");
 
-                //var employeeResult = _mapper.Map<EmployeeDto>(employee);
-                //return Ok(employeeResult);
-                return Ok(employee);
+                var employeeResult = _mapper.Map<EmployeeDto>(employee);
+                return Ok(employeeResult);
             }
         }
         catch (Exception ex)
         {
-            //_logger.LogError($"Something went wrong inside GetEmployeeById action: {ex.Message}");
+            _logger.LogError($"Something went wrong inside GetEmployeeById action: {ex.Message}");
             return StatusCode(500, "Internal server error");
         }
     }

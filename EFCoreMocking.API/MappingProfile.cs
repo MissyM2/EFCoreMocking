@@ -9,9 +9,9 @@ namespace EFCoreMocking.API
 	{
 		public MappingProfile()
 		{
-            CreateMap<Employee, EmployeeDto>().ReverseMap();
-			CreateMap<EmployeeForCreationDto, Employee>().ReverseMap();
-            CreateMap<EmployeeForUpdateDto, Employee>().ReverseMap();
+            CreateMap<Employee, EmployeeDto>();
+			CreateMap<EmployeeForCreationDto, Employee>();
+            CreateMap<EmployeeForUpdateDto, Employee>();
         }
 	}
 }
