@@ -54,6 +54,21 @@ namespace EFCoreMocking.Tests.Tests
         }
 
         [Fact]
+        public async Task GivenAMockDatabase_WhenRequestingANotExistentEmployeeAsynchronously_ThenReturnDefault()
+        {
+
+            var repositoryWrapperMock = MockIRepositoryWrapper.GetMock();
+            var mapper = GetMapper();
+            var logger = new LoggerManager();
+            var employeeController = new EmployeeController(repositoryWrapperMock.Object, mapper, logger);
+
+            var id = 500;
+            var result = await employeeController.GetEmployeeById(id) as ObjectResult;
+
+            Assert.Null(result);
+        }
+
+        [Fact]
         public async void Task_GetEmployeeById_Return_NotFoundResult()
         {
             //Arrange
